@@ -28,7 +28,6 @@ namespace Infrastructure.Repositories.Users
         public async Task<IEnumerable<User>> FetchAllUsers()
         {
             var users = await _client.GetFromJsonAsync<List<User>>("/users");
-            var x = _databaseConfig.Username;
             return users;
         }
     }
