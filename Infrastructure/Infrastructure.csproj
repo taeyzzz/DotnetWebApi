@@ -10,10 +10,12 @@
     <None Remove="Microsoft.Extensions.Http" />
     <None Remove="Newtonsoft.Json" />
     <None Remove="NetCore.AutoRegisterDi" />
+    <None Remove="Config\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
     <Folder Include="Repositories\Users\" />
+    <Folder Include="Config\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CoreApp\CoreApp.csproj" />
