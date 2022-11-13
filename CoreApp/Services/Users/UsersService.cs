@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CoreApp.Attributes;
 using CoreApp.Models;
 using CoreApp.Repositories.Users;
 using NetCore.AutoRegisterDi;
 
 namespace CoreApp.Services.Users
 {
-    [RegisterAsSingleton]
+    [RegisterSingleton]
     public class UsersService : IUsersService
     {
         private readonly IUsersRepository _usersRepository;
