@@ -36,13 +36,12 @@ namespace WebApi
             {
                 client.BaseAddress = new Uri(Configuration.GetSection("MockEndpoint").Value);
             });
-            var assembliesToScan = new[]
+            services.AutoWireAssembly(new[]
             {
                 Assembly.GetAssembly(typeof(Startup)),
                 Assembly.GetAssembly(typeof(CoreApp.Assembly)),
                 Assembly.GetAssembly(typeof(Infrastructure.Assembly))
-            };
-            services.RegisterAssemblyPublicNonGenericClasses(assembliesToScan).AsPublicImplementedInterfaces();
+            });
             services.AddControllers();
             services.AddSwaggerGen(options =>
             {
