@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Autofac;
 using CoreApp.Repositories.Users;
 using CoreApp.Services.Users;
 using Infrastructure.Config;
@@ -28,6 +29,11 @@ namespace WebApi
 
         public IConfiguration Configuration { get; }
 
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new AutofacModule());
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -36,13 +42,12 @@ namespace WebApi
             {
                 client.BaseAddress = new Uri(Configuration.GetSection("MockEndpoint").Value);
             });
-            var assembliesToScan = new[]
-            {
-                Assembly.GetAssembly(typeof(Startup)),
-                Assembly.GetAssembly(typeof(CoreApp.Assembly)),
-                Assembly.GetAssembly(typeof(Infrastructure.Assembly))
-            };
-            services.RegisterAssemblyPublicNonGenericClasses(assembliesToScan).AsPublicImplementedInterfaces();
+            // services.AutoWireAssembly(new[]
+            // {
+            //     Assembly.GetAssembly(typeof(Startup)),
+            //     Assembly.GetAssembly(typeof(CoreApp.Assembly)),
+            //     Assembly.GetAssembly(typeof(Infrastructure.Assembly))
+            // });
             services.AddControllers();
             services.AddSwaggerGen(options =>
             {

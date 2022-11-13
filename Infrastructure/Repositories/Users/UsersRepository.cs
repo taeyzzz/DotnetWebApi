@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using CoreApp.Attributes;
 using CoreApp.Models;
 using CoreApp.Repositories.Users;
 using Infrastructure.Config;
@@ -11,7 +12,7 @@ using NetCore.AutoRegisterDi;
 
 namespace Infrastructure.Repositories.Users
 {
-    [RegisterAsSingleton]
+    [RegisterSingleton]
     public class UsersRepository : IUsersRepository
     {
         private readonly HttpClient _client;
