@@ -54,7 +54,11 @@ namespace WebApi
                     && t.GetCustomAttribute<RegisterTransient>() != null);
             foreach (var type in types)
             {
-                services.AddTransient(type);
+                var interfaces = type.GetInterfaces();
+                foreach (var itf in interfaces)
+                {
+                    services.AddTransient(itf, type);
+                }
             }
             return services;
         }
@@ -71,7 +75,11 @@ namespace WebApi
                     && t.GetCustomAttribute<RegisterScoped>() != null);
             foreach (var type in types)
             {
-                services.AddScoped(type);
+                var interfaces = type.GetInterfaces();
+                foreach (var itf in interfaces)
+                {
+                    services.AddScoped(itf, type);
+                }
             }
             return services;
         } 
